@@ -1,0 +1,15 @@
+TOP_NAME = 'Анастасия'
+TOP_SURNAME = 'Сафронова'
+TOP_ADDRESS = 'Госпитальный переулок, д. 4, стр. 1'
+TOP_STATION = 'Бауманская'
+TOP_PHONE = '+79990000000'
+TOP_COMMENT = 'Проходная в общежитии, позвоните, как подойдете'
+
+BOTTOM_NAME = 'Александр'
+BOTTOM_SURNAME = 'Абраменко'
+BOTTOM_ADDRESS = 'пр. Ленина, 1'
+BOTTOM_STATION = 'Сокольники'
+BOTTOM_PHONE = '+79991111111'
+BOTTOM_COMMENT = 'Не опаздывайте, пожалуйста'
+
+EXPECTED_SUCCESS_TEXT = 'Заказ оформлен'
