@@ -1,15 +1,14 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
+from pages.main_page import MainPage
 from locators.order_page_locators import TOP_ORDER_BUTTON, BOTTOM_ORDER_BUTTON, NAME_FIELD, SURNAME_FIELD, ADDRESS_FIELD, STATION_FIELD, STATION_DROPDOWN_LIST, PHONE_FIELD, CONFIRM_BUTTON, BACK_BUTTON, DATE_FIELD, DATEPICKER, PERIOD_FIELD, PERIOD_MENU, COMMENT_FIELD, SAVE_BUTTON, SUCCESS_WINDOW, VIEW_STATUS_BUTTON, YA_BUTTON, HOME_BUTTON, CONTINUE_BUTTON
 from constants.main_page_constants import YA_URL, BASE_URL
 
 
-class OrderPage:
+class OrderPage(MainPage):
 
     def __init__(self, driver):
-        self.driver = driver 
-        self.wait = WebDriverWait(self.driver, 10)
+        super().__init__(driver)
 
     def click_top_order_button(self):
         self.driver.find_element(*TOP_ORDER_BUTTON).click()

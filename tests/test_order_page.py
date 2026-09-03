@@ -1,7 +1,6 @@
 import pytest
 import allure
 from pages.order_page import OrderPage
-from constants.main_page_constants import BASE_URL
 from constants.order_page_constants import FIRST_TEST_DATA, SECOND_TEST_DATA, EXPECTED_SUCCESS_TEXT
 
 
@@ -10,9 +9,9 @@ class TestOrderPage:
     @allure.title('Проверяем флоу позитивного сценария заказа самоката')
     @pytest.mark.parametrize('test_data', [FIRST_TEST_DATA, SECOND_TEST_DATA])
     def test_order_scooter_success(self, driver, test_data):
-        driver.get(BASE_URL)
 
         order_page = OrderPage(driver)
+        order_page.get_main_page()
 
         if test_data["entry_type"] == "top":
             order_page.click_top_order_button()
