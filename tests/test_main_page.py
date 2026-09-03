@@ -1,6 +1,3 @@
-from selenium import webdriver
-from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.firefox.service import Service
 import pytest
 import allure
 from pages.main_page import MainPage
@@ -9,14 +6,6 @@ from constants.main_page_constants import TEXT_PRICE, TEXT_SEVERAL_SCOOTERS, TEX
 
 
 class TestMainPage:
-
-    driver = None
-
-    @classmethod
-    def setup_class(cls):
-        driver_path = GeckoDriverManager().install()
-        firefox_service = Service(executable_path=driver_path)
-        cls.driver = webdriver.Firefox(service=firefox_service)
 
     @allure.title('Проверяем тексты ответов на вопросы в разделе «Вопросы о важном»')
     @pytest.mark.parametrize('question_locator, answer_locator, expected_text', [
@@ -29,14 +18,10 @@ class TestMainPage:
         [QUESTION_ORDER_CANCELLATION, ANSWER_ORDER_CANCELLATION, TEXT_ORDER_CANCELLATION],
         [QUESTION_ORDER_OUTSIDE_MOSCOW, ANSWER_ORDER_OUTSIDE_MOSCOW, TEXT_ORDER_OUTSIDE_MOSCOW]
     ])
-    def test_check_answer_for_question(self, question_locator, answer_locator, expected_text):
-        self.driver.get(BASE_URL)
+    def test_check_answer_for_question(self, driver, question_locator, answer_locator, expected_text):
+        driver.get(BASE_URL)
 
-        main_page = MainPage(self.driver)
+        main_page = MainPage(driver)
         result_text = main_page.get_answer_for_question(question_locator, answer_locator)
 
         assert expected_text == result_text
-
-    @classmethod
-    def teardown_class(cls):
-        cls.driver.quit() 

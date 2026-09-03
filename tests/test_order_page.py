@@ -1,6 +1,3 @@
-from selenium import webdriver
-from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.firefox.service import Service
 import pytest
 import allure
 from pages.order_page import OrderPage
@@ -10,20 +7,12 @@ from constants.order_page_constants import FIRST_TEST_DATA, SECOND_TEST_DATA, EX
 
 class TestOrderPage:
 
-    driver = None
-
-    @classmethod
-    def setup_class(cls):
-        driver_path = GeckoDriverManager().install()
-        firefox_service = Service(executable_path=driver_path)
-        cls.driver = webdriver.Firefox(service=firefox_service)
-
     @allure.title('Проверяем флоу позитивного сценария заказа самоката')
     @pytest.mark.parametrize('test_data', [FIRST_TEST_DATA, SECOND_TEST_DATA])
-    def test_order_scooter_success(self, test_data):
-        self.driver.get(BASE_URL)
+    def test_order_scooter_success(self, driver, test_data):
+        driver.get(BASE_URL)
 
-        order_page = OrderPage(self.driver)
+        order_page = OrderPage(driver)
 
         if test_data["entry_type"] == "top":
             order_page.click_top_order_button()
@@ -62,7 +51,3 @@ class TestOrderPage:
         elif test_data["final_check"] == 'yandex':
             order_page.click_ya_button()
             order_page.wait_for_load_ya_page()
-
-    @classmethod
-    def teardown_class(cls):
-        cls.driver.quit() 
