@@ -15,7 +15,6 @@ FIRST_TEST_DATA = {
     "station": "Бауманская",
     "phone": "+79990000000",
     "comment": "Проходная в общежитии, позвоните, как подойдете",
-    "final_check": "home",
     "date": DATE_9_BUTTON,
     "period": TWO_DAYS_PERIOD_BUTTON,
     "color": CHECKBOX_BLACK
@@ -29,7 +28,6 @@ SECOND_TEST_DATA ={
     "station": "Сокольники",
     "phone": "+79991111111",
     "comment": "Не опаздывайте, пожалуйста",
-    "final_check": "yandex",
     "date": DATE_10_BUTTON,
     "period": THREE_DAYS_PERIOD_BUTTON,
     "color": CHECKBOX_GREY

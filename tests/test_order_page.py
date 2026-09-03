@@ -41,12 +41,20 @@ class TestOrderPage:
 
         assert EXPECTED_SUCCESS_TEXT in order_page.get_success_text()
 
-        order_page.close_success_order_creation_window()
-        order_page.wait_for_load_status_of_order_page()
 
-        if test_data["final_check"] == "home":
-            order_page.click_home_button()
-            order_page.wait_for_load_home_page()
-        elif test_data["final_check"] == 'yandex':
-            order_page.click_ya_button()
-            order_page.wait_for_load_ya_page()
+    @allure.title('Проверяем кнопку с логотипом Яндекса на главной странице')
+    def test_ya_button(self, driver):
+
+        order_page = OrderPage(driver)
+        order_page.get_main_page()
+        order_page.click_ya_button()
+        order_page.wait_for_load_ya_page()
+
+
+    @allure.title('Проверяем кнопку с логотипом Самоката на главной странице')
+    def test_home_button(self, driver):
+
+        order_page = OrderPage(driver)
+        order_page.get_main_page()
+        order_page.click_home_button()
+        order_page.wait_for_load_home_page()

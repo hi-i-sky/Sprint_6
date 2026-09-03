@@ -94,12 +94,6 @@ class OrderPage(MainPage):
     def get_success_text(self):
         return self.driver.find_element(*SUCCESS_WINDOW).text
 
-    def close_success_order_creation_window(self):
-        self.driver.find_element(*VIEW_STATUS_BUTTON).click()
-
-    def wait_for_load_status_of_order_page(self):
-        self.wait.until(EC.url_contains('/track'))
-
     def click_ya_button(self):
         self.driver.find_element(*YA_BUTTON).click()
         
@@ -116,4 +110,3 @@ class OrderPage(MainPage):
 
     def wait_for_load_home_page(self):
         self.wait.until(EC.url_to_be(BASE_URL))
-
