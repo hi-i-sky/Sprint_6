@@ -6,6 +6,7 @@ from locators.order_page_locators import DATE_10_BUTTON, THREE_DAYS_PERIOD_BUTTO
 
 class TestOrderPage:
 
+
     @allure.title('Проверяем флоу позитивного сценария заказа самоката через кнопку наверху страницы')
     def test_order_scooter_by_top_order_button_success(self, driver):
         order_page = OrderPage(driver)
@@ -38,19 +39,3 @@ class TestOrderPage:
         order_page.wait_for_load_success_window()
 
         assert EXPECTED_SUCCESS_TEXT in order_page.get_success_text()
-
-
-    @allure.title('Проверяем кнопку с логотипом Яндекса на главной странице')
-    def test_ya_button(self, driver):
-        order_page = OrderPage(driver)
-        order_page.get_main_page()
-        order_page.click_ya_button()
-        order_page.wait_for_load_ya_page()
-
-
-    @allure.title('Проверяем кнопку с логотипом Самоката на главной странице')
-    def test_home_button(self, driver):
-        order_page = OrderPage(driver)
-        order_page.get_main_page()
-        order_page.click_home_button()
-        order_page.wait_for_load_home_page()

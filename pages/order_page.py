@@ -1,22 +1,14 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from pages.main_page import MainPage
-from locators.order_page_locators import TOP_ORDER_BUTTON, BOTTOM_ORDER_BUTTON, NAME_FIELD, SURNAME_FIELD, ADDRESS_FIELD, STATION_FIELD, STATION_DROPDOWN_LIST, PHONE_FIELD, CONFIRM_BUTTON, BACK_BUTTON, DATE_FIELD, DATEPICKER, PERIOD_FIELD, PERIOD_MENU, COMMENT_FIELD, SAVE_BUTTON, SUCCESS_WINDOW, VIEW_STATUS_BUTTON, YA_BUTTON, HOME_BUTTON, CONTINUE_BUTTON
-from constants.main_page_constants import YA_URL, BASE_URL
+from locators.order_page_locators import NAME_FIELD, SURNAME_FIELD, ADDRESS_FIELD, STATION_FIELD, STATION_DROPDOWN_LIST, PHONE_FIELD, CONFIRM_BUTTON, BACK_BUTTON, DATE_FIELD, DATEPICKER, PERIOD_FIELD, PERIOD_MENU, COMMENT_FIELD, SAVE_BUTTON, SUCCESS_WINDOW, VIEW_STATUS_BUTTON, CONTINUE_BUTTON
+
 
 
 class OrderPage(MainPage):
 
     def __init__(self, driver):
         super().__init__(driver)
-
-    def click_top_order_button(self):
-        self.driver.find_element(*TOP_ORDER_BUTTON).click()
-
-    def click_bottom_order_button(self):
-        bottom_button = self.driver.find_element(*BOTTOM_ORDER_BUTTON)
-        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", bottom_button)
-        bottom_button.click()
 
     def wait_for_load_first_order_page(self):
         self.wait.until(EC.visibility_of_element_located(CONTINUE_BUTTON))
@@ -93,20 +85,3 @@ class OrderPage(MainPage):
 
     def get_success_text(self):
         return self.driver.find_element(*SUCCESS_WINDOW).text
-
-    def click_ya_button(self):
-        self.driver.find_element(*YA_BUTTON).click()
-        
-        self.wait.until(lambda d: len(d.window_handles) > 1)
-        
-        all_windows = self.driver.window_handles
-        self.driver.switch_to.window(all_windows[-1])
-
-    def click_home_button(self):
-        self.driver.find_element(*HOME_BUTTON).click()
-
-    def wait_for_load_ya_page(self):
-        self.wait.until(EC.url_contains(YA_URL))
-
-    def wait_for_load_home_page(self):
-        self.wait.until(EC.url_to_be(BASE_URL))

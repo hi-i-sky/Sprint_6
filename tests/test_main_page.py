@@ -26,3 +26,19 @@ class TestMainPage:
         result_text = main_page.get_answer_for_question(question_locator, answer_locator)
 
         assert expected_text == result_text
+
+
+    @allure.title('Проверяем кнопку с логотипом Яндекса на главной странице')
+    def test_ya_button(self, driver):
+        order_page = MainPage(driver)
+        order_page.get_main_page()
+        order_page.click_ya_button()
+        order_page.wait_for_load_ya_page()
+
+
+    @allure.title('Проверяем кнопку с логотипом Самоката на главной странице')
+    def test_home_button(self, driver):
+        order_page = MainPage(driver)
+        order_page.get_main_page()
+        order_page.click_home_button()
+        order_page.wait_for_load_home_page()
