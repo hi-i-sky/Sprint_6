@@ -8,8 +8,7 @@ class TestOrderPage:
 
 
     @allure.title('Проверяем флоу позитивного сценария заказа самоката через кнопку наверху страницы')
-    def test_order_scooter_by_top_order_button_success(self, driver):
-        order_page = OrderPage(driver)
+    def test_order_scooter_by_top_order_button_success(self, order_page):
         order_page.get_main_page()
         order_page.click_top_order_button()
         order_page.wait_for_load_first_order_page()
@@ -25,8 +24,7 @@ class TestOrderPage:
 
 
     @allure.title('Проверяем флоу позитивного сценария заказа самоката через кнопку внизу страницы')
-    def test_order_scooter_by_bottom_order_button_success(self, driver):
-        order_page = OrderPage(driver)
+    def test_order_scooter_by_bottom_order_button_success(self, order_page):
         order_page.get_main_page()
         order_page.click_bottom_order_button()
         order_page.wait_for_load_first_order_page()

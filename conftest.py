@@ -4,7 +4,8 @@ import pytest
 from selenium import webdriver
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.support.ui import WebDriverWait
+from pages.order_page import OrderPage
+from pages.main_page import MainPage
 
 
 ROOT_DIR = Path(__file__).resolve().parent
@@ -18,3 +19,15 @@ def driver():
     driver = webdriver.Firefox(service=firefox_service)
     yield driver
     driver.quit()
+
+@pytest.fixture
+def order_page(driver):
+    page = OrderPage(driver)
+    page.get_main_page()
+    return page
+
+@pytest.fixture
+def main_page(driver):
+    page = MainPage(driver)
+    page.get_main_page()
+    return page

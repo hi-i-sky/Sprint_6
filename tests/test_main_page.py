@@ -19,26 +19,23 @@ class TestMainPage:
         [QUESTION_ORDER_CANCELLATION, ANSWER_ORDER_CANCELLATION, TEXT_ORDER_CANCELLATION],
         [QUESTION_ORDER_OUTSIDE_MOSCOW, ANSWER_ORDER_OUTSIDE_MOSCOW, TEXT_ORDER_OUTSIDE_MOSCOW]
     ])
-    def test_check_answer_for_question(self, driver, question_locator, answer_locator, expected_text):
-
-        main_page = MainPage(driver)
+    def test_check_answer_for_question(self, main_page, question_locator, answer_locator, expected_text):
         main_page.get_main_page()
+
         result_text = main_page.get_answer_for_question(question_locator, answer_locator)
 
         assert expected_text == result_text
 
 
     @allure.title('Проверяем кнопку с логотипом Яндекса на главной странице')
-    def test_ya_button(self, driver):
-        order_page = MainPage(driver)
-        order_page.get_main_page()
-        order_page.click_ya_button()
-        order_page.wait_for_load_ya_page()
+    def test_ya_button(self, main_page):
+        main_page.get_main_page()
+        main_page.click_ya_button()
+        main_page.wait_for_load_ya_page()
 
 
     @allure.title('Проверяем кнопку с логотипом Самоката на главной странице')
-    def test_home_button(self, driver):
-        order_page = MainPage(driver)
-        order_page.get_main_page()
-        order_page.click_home_button()
-        order_page.wait_for_load_home_page()
+    def test_home_button(self, main_page):
+        main_page.get_main_page()
+        main_page.click_home_button()
+        main_page.wait_for_load_home_page()
